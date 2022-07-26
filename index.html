@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>HMC</title>
+  </head>
+
+  <body>
+    <div
+      class="w-screen h-screen flex justify-center items-center bg-[#A7DCFE]"
+    >
+      <form class="p-10 bg-[#D8EFFF] drop-shadow-lg space-y-5" action="/inicio">
+        <h1 class="text-center text-3xl font-bold font-serif text-border-black">
+          Historial Medico Central
+        </h1>
+        <div class="flex flex-col space-y-2">
+          <label class="text-sm font-light" for="email">Correo electronico</label>
+          <input
+            class="w-96 px-3 py-2 rounded-md border border-slate-400"
+            type="correo electronico"
+            placeholder="Introduzca su correo electronico"
+            name="Correo electronico"
+            id="Correo electronico"
+          />
+        </div>
+        <div class="flex flex-col space-y-2">
+          <label class="text-sm font-light" for="password">Contraseña</label>
+          <input
+            class="w-96 px-3 py-2 rounded-md border border-slate-400"
+            type="Contraseña"
+            placeholder="Introduzca su contraseña"
+            name="Contraseña"
+            id="Contraseña"
+          />
+        </div>
+
+        <div>
+          <input type="checkbox" name="remember" id="remember" />
+          <label class="text-sm font-light" for="remember">Recordarme</label>
+        </div>
+
+        <button
+          class="w-full px-10 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 hover:drop-shadow-md duration-300 ease-in"
+          type="submit"
+        >
+          Registrarse
+        </button>
+
+        <p class="text-right">
+          <a
+            class="text-blue-600 text-sm font-light hover:underline"
+            href="https://www.kindacode.com"
+            >¿Olvido su contraseña?</a
+          >
+        </p>
+      </form>
+    </div>
+  </body>
+</html>
