@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, Response
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin, login_requiered, login_user, current_user
+from flask_login import LoginManager, UserMixin, login_required, login_user, current_user, logout_user
 from flask_wtf import FlaskForm
 from wtforms import Form, BooleanField, StringField, PasswordField, validators
 from wtforms.validators import InputRequired, Length
@@ -10,7 +10,7 @@ from werkzeug.utils import secure_filename
 
 # sv config
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/db.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/rmc.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db=SQLAlchemy(app)
 
@@ -23,34 +23,33 @@ login_manager.login_view = 'login'
 
 #Tablas de Registro Paciente
 class Paciente(db.Model):
-    id = db.Colum(db.Integer,primary_key = True)
+    id = db.Column(db.Integer,primary_key = True)
     user_name = db.Column(db.String(100))
     user_ci = db.Column(db.String(10)) 
-    user_sex = db.Column(db.Sting(20))
+    user_sex = db.Column(db.String(20))
     user_blood =  db.Column(db.String(10)) 
     user_estatura =  db.Column(db.String(10)) 
     user_pat =  db.Column(db.String(500)) 
 
 class Consultas(db.Model):
     consulta_id = db.Column (db.Integer, primary_key = True)
-    consulta_user_id = db.Column (db.Integer, db.ForeingnKey('paciente.id'))
-    fecha_consulta = db.Columm (db.String(100))
-    razon_consulta = db.Columm (db.String(500))
-    img_consulta = db.Columm(db.Text, default = 'default.jpg')
-    img_name = db.Columm(db.Text)
-    img_mimetype = db.Columm(db.Text)
-    doctor_consulta = db.Columm (db.String(200))
-    institucion_consulta = db.Columm (db.String(200))
+    consulta_user_id = db.Column (db.Integer, db.ForeignKey('paciente.id'))
+    fecha_consulta = db.Column (db.String(100))
+    razon_consulta = db.Column (db.String(500))
+    img_consulta = db.Column(db.Text, default = 'default.jpg')
+    img_name = db.Column(db.Text)
+    img_mimetype = db.Column(db.Text)
+    doctor_consulta = db.Column (db.String(200))
+    institucion_consulta = db.Column (db.String(200))
 
 @login_manager.user_loader
 def load_user(user_id):
     return Paciente.query.get(int(user_id))
 
 class LoginForm(FlaskForm):
-    ci = StringField('ci', validators=[InputRequiered(), Leng(min=4,max=25)])
-    password = PasswordField('password', validators=[InputRequiered(), Length(min=8, max=80)])
+    ci = StringField('ci', validators=[InputRequired(), Length(min=4,max=25)])
+    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
     remember = BooleanField('remember me')
-
 
 
 
@@ -59,7 +58,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/registro', methods = ['GET', 'POST'])
+@app.route('/registro_paciente', methods = ['GET', 'POST'])
 def registro():
     if request.method =='POST':
         paciente = Paciente(
@@ -94,7 +93,7 @@ def login():
 def inicio():
     return render_template ('inicio.html')
 
-@app.route("/consulta", methods=['GET','POST'])
+@app.route("/register_consulta", methods=['GET','POST'])
 def consulta():
     if request.method == 'POST':
         pic = request.files['img']
@@ -117,6 +116,24 @@ def consulta():
         return redirect(url_for('index'))
     return render_template('consulta.html')
 
-@app.route("/registrar_consulta")
-def registrar_consulta():
-    return render_template('registrar_consulta.html')
+@app.route("/user", methods=['GET'])
+def user():
+    consultas =Consultas.query.filter_by(consulta_user_id=current_user.id)
+    return render_template('user.html', consutas=consultas)
+
+@app.route('/foto/<id>')
+def get_img(id):
+    img=Consultas.query.filter_by(consulta_id=id).first()
+    if not img:
+        return 'no image'
+
+    return Response(img.img_consulta, mimetype=img.img_mimetype)
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
+if __name__ == '__main__':
+    app.run(debug=True)
