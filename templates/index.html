@@ -34,48 +34,49 @@
   >
     <div class="flex-grow flex flex-col">
       <main>
-        <div class="mx-auto max-w-7xl w-full flex px-4 sm:px-6 lg:px-8">
-          <div style="width: 650px; height: 650px">
+        <div class="mx-auto max-w-7xl w-full flex sm:px-6 lg:px-8">
+          <div style="width: 650px; height: 650px" class="flex">
             <img
               style="width: 650px; height: 650px"
-              class="absolute inset-0 h-full w-full object-cover"
+              class="inset-0 h-full w-full object-cover"
               src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/041/821/original/logo2.PNG?1658876014"
               alt="Logo"
             />
-          </div>
 
-          <div class="flex-shrink-0 pt-10 sm:pt-16">
-            <a href="/" class="inline-flex">
-              <span class="sr-only">Registro Medico Central</span>
-            </a>
-          </div>
-          <div class="flex-shrink-0 my-auto py-16 sm:py-32">
-            <p
-              class="text-sm font-semibold text-indigo-600 uppercase tracking-wide"
-            >
-              Bienvenidos
-            </p>
-            <h1
-              class="mt-2 text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl"
-            >
-              Registro Medico Central
-            </h1>
-            <p class="mt-2 text-base text-black text-[20px]">
-              Centralizacion de historial clinico de pacientes para la
-              optimizacion de <br />
-              servicios de salud
-            </p>
-            <div class="mt-6 flex justify-end">
-              <a
-                href="{{url_for('login')}}"
-                class="text-base font-medium text-indigo-600 m-4 hover:text-indigo-500"
-                >Iniciar sesión</a
-              >
-              <a
-                href="{{url_for('registro')}}"
-                class="text-base font-medium text-indigo-600 m-4 hover:text-indigo-500"
-                >Registrarse</a
-              >
+            <div class="flex items-center">
+              <div class="flex-shrink-0 pt-10 sm:pt-16">
+                <a href="/" class="inline-flex">
+                  <span class="sr-only">Registro Medico Central</span>
+                </a>
+              </div>
+              <div class="flex-shrink-0 my-auto py-16 w-[600px]">
+                <p
+                  class="text-sm font-semibold text-indigo-600 uppercase tracking-wide"
+                >
+                  Bienvenidos
+                </p>
+                <h1
+                  class="mt-2 text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl"
+                >
+                  Registro Medico Central
+                </h1>
+                <p class="mt-2 text-base text-black text-[20px]">
+                  Centralizacion de historial clinico de pacientes para la
+                  optimizacion de servicios de salud
+                </p>
+                <div class="mt-6 flex justify-end">
+                  <a
+                    href="{{url_for('login')}}"
+                    class="text-base text-indigo-600 flex self-center hover:text-black hover:bg-[#14378B] px-3 py-2 rounded-md text-md font-bold"
+                    >Iniciar sesión</a
+                  >
+                  <a
+                    href="{{url_for('registro')}}"
+                    class="text-base text-indigo-600 flex self-center hover:text-black hover:bg-[#14378B] px-3 py-2 rounded-md text-md font-bold"
+                    >Registrarse</a
+                  >
+                </div>
+              </div>
             </div>
           </div>
         </div>
