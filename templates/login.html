@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,43 +9,56 @@
 
   <body>
     <div
-      class="w-screen h-screen flex justify-center items-center bg-[#A7DCFE]"
+      class="w-screen h-screen flex justify-center items-center bg-[#9DD7FE]"
     >
-      <form class="p-10 bg-[#D8EFFF] drop-shadow-lg space-y-5" action="/inicio">
-        <h1 class="text-center text-3xl font-bold font-serif text-border-black">
-          Historial Medico Central
+      <form
+        class="p-10 bg-[#D8EFFF] drop-shadow-lg space-y-5"
+        action="/login"
+        method="POST"
+      >
+        <h1
+          class="text-[#0E3D95] text-center text-3xl font-bold font-serif text-border-black"
+        >
+          Registro Médico Central
         </h1>
-        <div class="flex flex-col space-y-2">
-          <label class="text-sm font-light" for="email">Correo electronico</label>
-          <input
+        <div class="text-[#0E3D95] flex flex-col space-y-2">
+          <label class="text-sm font-bold" for="number">Número de Cédula</label>
+          {{form.ci}}
+          <!-- <input
             class="w-96 px-3 py-2 rounded-md border border-slate-400"
             type="correo electronico"
-            placeholder="Introduzca su correo electronico"
-            name="Correo electronico"
-            id="Correo electronico"
-          />
+            placeholder="Introduzca su número de cédula"
+            name="number"
+            id="number" -->
+          <!-- /> -->
         </div>
         <div class="flex flex-col space-y-2">
-          <label class="text-sm font-light" for="password">Contraseña</label>
-          <input
+          <label class="text-[#0E3D95] text-sm font-bold" for="password"
+            >Contraseña</label
+          >
+          {{form.password}}
+          <!-- <input
             class="w-96 px-3 py-2 rounded-md border border-slate-400"
             type="Contraseña"
             placeholder="Introduzca su contraseña"
             name="Contraseña"
             id="Contraseña"
-          />
+          /> -->
+          {{form.hidden_tag()}}
         </div>
 
         <div>
           <input type="checkbox" name="remember" id="remember" />
-          <label class="text-sm font-light" for="remember">Recordarme</label>
+          <label class="text-[#0E3D95] text-sm" for="remember"
+            >Recordarme</label
+          >
         </div>
 
         <button
           class="w-full px-10 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 hover:drop-shadow-md duration-300 ease-in"
           type="submit"
         >
-          Registrarse
+          Iniciar Sesión
         </button>
 
         <p class="text-right">

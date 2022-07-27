@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
   
@@ -22,7 +24,7 @@
  
         /* Styling the Form (Color, Padding, Shadow) */
         form {
-            background-color: #fff;
+            background-color: #D8EFFF;
             max-width: 500px;
             margin: 50px auto;
             padding: 30px 20px;
@@ -39,6 +41,7 @@
         .form-control label {
             display: block;
             margin-bottom: 10px;
+            color:#003F9F;
         }
  
         /* Styling form-control input,
@@ -52,6 +55,7 @@
             padding: 10px;
             display: block;
             width: 95%;
+            color:#9CA3AF
         }
  
         /* Styling form-control Radio
@@ -73,22 +77,200 @@
             width: 100%;
             margin-top: 50px;
             margin-bottom: 20px;
-            padding: 6px;
+            padding: 8px;
         }
         h1 {
-            font-family: serif;
-           color:#00053C;
             font-size: 45px;
+            font-family: serif;
+            font-weight: bold;
+            color:#003F9F;
+            
           
         }
     </style>
+    <script src="https://cdn.tailwindcss.com/"></script>
 </head>
   
 <body >
-    <h1>Registro</h1>
+      <nav class="bg-[#57aee4]">
+        <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+          <div class="relative flex items-center justify-between h-25">
+            <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+              <!-- Mobile menu button-->
+              <button
+                type="button"
+                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                aria-controls="mobile-menu"
+                aria-expanded="false"
+              >
+                <span class="sr-only">Open main menu</span>
+                <!--
+              Icon when menu is closed.
   
+              Heroicon name: outline/menu
+  
+              Menu open: "hidden", Menu closed: "block"
+            -->
+                <svg
+                  class="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+                <!--
+              Icon when menu is open.
+  
+              Heroicon name: outline/x
+  
+              Menu open: "block", Menu closed: "hidden"
+            -->
+                <svg
+                  class="hidden h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"
+            >
+              <div class="flex-shrink-0 flex items-center">
+                <img
+                  class="hidden lg:block h-20 w-auto"
+                  src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/041/821/original/logo2.PNG?1658876014"
+                  alt="RMC"
+                />
+              </div>
+              <div class="hidden flex align-center sm:flex block sm:ml-6">
+                <div class="flex space-x-4">
+                  <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                  <a
+                    href="#"
+                    class="text-white flex self-center hover:bg-[#14378B] text-white px-3 py-2 rounded-md text-md font-bold"
+                    aria-current="page"
+                    >Inicio</a
+                  >
+  
+                  <a
+                    href="#"
+                    class="text-white flex self-center hover:bg-[#14378B] text-white px-3 py-2 rounded-md text-md font-bold"
+                    >Historial</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+            >
+              <button style="border: #57AEE4;"
+                type="button"
+                class="text-white hover:bg-[#14378B] hover:text-white px-3 py-2 rounded-md text-md font-bold"
+              >
+                <span class="sr-only">Cerrar Sesion</span>
+                <!-- Heroicon name: outline/bell -->
+                <p>Cerrar Sesion</p>
+                <!-- <svg
+                  class="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                  />
+                </svg> -->
+              </button>
+  
+              <!-- Profile dropdown -->
+              <div class="ml-3 relative">
+                <div>
+                  <button
+                    type="button"
+                    class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                    id="user-menu-button"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    <span class="sr-only">Open user menu</span>
+                  </button>
+                </div>
+  
+                <!--
+              Dropdown menu, show/hide based on menu state.
+  
+              Entering: "transition ease-out duration-100"
+                From: "transform opacity-0 scale-95"
+                To: "transform opacity-100 scale-100"
+              Leaving: "transition ease-in duration-75"
+                From: "transform opacity-100 scale-100"
+                To: "transform opacity-0 scale-95"
+            -->
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div class="sm:hidden" id="mobile-menu">
+          <div class="px-2 pt-2 pb-3 space-y-1">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a
+              href="#"
+              class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+              aria-current="page"
+              >Dashboard</a
+            >
+  
+            <a
+              href="#"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+              >Team</a
+            >
+  
+            <a
+              href="#"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+              >Projects</a
+            >
+  
+            <a
+              href="#"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+              >Calendar</a
+            >
+          </div>
+        </div>
+      </nav>
+    </br>
+    <div class="text-5xl font-bold">
+      <h1>Registro</h1>
+    </div>
     <!-- Create Form -->
-    <form id="form">
+    <form id="form" method="POST">
  
         <!-- Details -->
         <div class="form-control">
@@ -99,7 +281,7 @@
             <!-- Input Type Text -->
             <input type="text"
                    id="name"
-                   name="name"
+                  name="name"
                    placeholder="Introduzca su nombre" />
         </div>
   
@@ -178,18 +360,19 @@
                 </label>
 
             <!-- Dropdown options -->
-            <select name="sex" id="sex">
-                <option value="masculino">masculino</option>
-                <option value="femenino">femenino</option>
-                <option value="other">otro</option>
+            <select id="sex" name="sex">
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
             </select>
         </div>
   
  
         <!-- Multi-line Text Input Control -->
-        <button type="submit" value="submit">
-            Enviar
-        </button>
+        <div class=" text-white bg-blue-600 hover:bg-blue-500">
+          <button type="submit" value="submit">
+              Enviar
+          </button>
+        </div>
     </form>
 </body>
   

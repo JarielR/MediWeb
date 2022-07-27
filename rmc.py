@@ -12,6 +12,7 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/rmc.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = 'Cierrate Sesamos'
 db=SQLAlchemy(app)
 
 # login config
@@ -22,7 +23,7 @@ login_manager.login_view = 'login'
 
 
 #Tablas de Registro Paciente
-class Paciente(db.Model):
+class Paciente(UserMixin,db.Model):
     id = db.Column(db.Integer,primary_key = True)
     user_name = db.Column(db.String(100))
     user_ci = db.Column(db.String(10)) 
@@ -49,7 +50,7 @@ def load_user(user_id):
 class LoginForm(FlaskForm):
     ci = StringField('ci', validators=[InputRequired(), Length(min=4,max=25)])
     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
-    remember = BooleanField('remember me')
+    # remember = BooleanField('remember me')
 
 
 
@@ -61,6 +62,7 @@ def index():
 @app.route('/registro_paciente', methods = ['GET', 'POST'])
 def registro():
     if request.method =='POST':
+        print("entre en post")
         paciente = Paciente(
             user_name = request.form['name'],
             user_ci = request.form['ci'],
@@ -69,21 +71,24 @@ def registro():
             user_estatura = request.form['estatura'],
             user_pat = request.form['pat']
         )
+        print(paciente)
         db.session.add(paciente)
         db.session.commit()
-        return redirect(url_for('index'))
-
+        return redirect(url_for('login'))
     return render_template('registro.html')
 
-@app.route('/login', methods = ['POST','GET'])
+@app.route('/login', methods = ['GET','POST'])
 def login():
     form = LoginForm()
+    print(form.validate_on_submit())
 
     if form.validate_on_submit():
-        user = Paciente.query.filter_by(user_ci=form.ci.date).first()
+        user = Paciente.query.filter_by(user_ci=form.ci.data).first()
+        print(user)
         if user:
-            login_user(user, remember=form.remember.data)
-            return redirect(url_for('index'))
+            print("entre en el if")
+            login_user(user)
+            return redirect(url_for('user'))
 
         return '<h1>Invalid username or passord</h1>'
 
@@ -91,12 +96,14 @@ def login():
 
 @app.route('/inicio')
 def inicio():
-    return render_template ('inicio.html')
+    return render_template ('perfil.html')
 
-@app.route("/register_consulta", methods=['GET','POST'])
+@app.route("/registro_consulta", methods=['GET','POST'])
 def consulta():
     if request.method == 'POST':
+        print("entre en post")
         pic = request.files['img']
+        print("esta es la pic")
         if not pic:
             return 'No image uploaded', 400
         filename = secure_filename(pic.filename)
@@ -109,25 +116,37 @@ def consulta():
             img_consulta = pic.read(),
             img_name = filename,
             img_mimetype = mimetype,
-            doctor_consulta = request.form['institucion']
+            doctor_consulta = request.form['doctor'],
+            institucion_consulta=request.form['institucion']
         )
+        print(consulta)
         db.session.add(consulta)
         db.session.commit()
-        return redirect(url_for('index'))
-    return render_template('consulta.html')
+        return redirect(url_for('user'))
+    return render_template('registro_consulta.html')
 
 @app.route("/user", methods=['GET'])
+@login_required
 def user():
     consultas =Consultas.query.filter_by(consulta_user_id=current_user.id)
-    return render_template('user.html', consutas=consultas)
+    return render_template('perfil.html', consultas=consultas)
 
-@app.route('/foto/<id>')
+@app.route('/ver_consulta/foto/<id>')
 def get_img(id):
     img=Consultas.query.filter_by(consulta_id=id).first()
     if not img:
         return 'no image'
 
     return Response(img.img_consulta, mimetype=img.img_mimetype)
+
+@app.route('/ver_consulta/<int:consulta_id>', methods=['POST','GET'])
+def ver_consulta(consulta_id):
+    paciente=Paciente.query.filter_by(id=current_user.id).first()
+    consulta =Consultas.query.filter_by(consulta_id=consulta_id).first()
+    if not consulta:
+        return 'no hay consulta con ese registro'
+    
+    return render_template('ver_historial.html', consulta=consulta, paciente=paciente)
 
 @app.route('/logout')
 @login_required

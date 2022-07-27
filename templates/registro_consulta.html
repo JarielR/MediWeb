@@ -263,24 +263,9 @@ module.exports = {
           <form
             action="#"
             method="POST"
+            enctype="multipart/form-data"
             class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
           >
-            <div class="sm:col-span-2">
-              <label
-                for="text"
-                class="text-[#003F9F] block text-sm font-bold font-serif"
-                >Nombre completo</label
-              >
-              <div class="mt-1">
-                <input
-                  type="text"
-                  name="company"
-                  id="company"
-                  autocomplete="organization"
-                  class="border-t border-r border-b border-l border-black py-3 px-3 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                />
-              </div>
-            </div>
             <div class="sm:col-span-2">
               <label
                 for="date"
@@ -289,8 +274,8 @@ module.exports = {
               >
               <div class="mt-1">
                 <input
-                  id="date"
-                  name="date"
+                  id="fecha"
+                  name="fecha"
                   type="date"
                   autocomplete="date"
                   class="text-[#9CA3AF] border-t border-r border-b border-l border-black py-3 px-3 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
@@ -306,8 +291,8 @@ module.exports = {
               <div class="mt-1">
                 <input
                   type="text"
-                  name="company"
-                  id="company"
+                  name="razon"
+                  id="razon"
                   autocomplete="organization"
                   class="border-t border-r border-b border-l border-black py-3 px-3 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-black"
                 />
@@ -322,8 +307,8 @@ module.exports = {
               <div class="mt-1">
                 <input
                   type="text"
-                  name="company"
-                  id="company"
+                  name="doctor"
+                  id="doctor"
                   autocomplete="organization"
                   class="border-t border-r border-b border-l border-black py-3 px-3 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                 />
@@ -338,8 +323,8 @@ module.exports = {
               <div class="mt-1">
                 <input
                   type="text"
-                  name="company"
-                  id="company"
+                  name="institucion"
+                  id="institucion"
                   autocomplete="organization"
                   class="border-t border-r border-b border-l border-black py-3 px-3 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                 />
@@ -354,8 +339,8 @@ module.exports = {
               <div class="mt-1">
                 <input
                   type="file"
-                  name="company"
-                  id="company"
+                  name="img"
+                  id="img"
                   autocomplete="organization"
                   class="border-t border-r border-b border-l border-black text-[#9CA3AF] py-3 px-3 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
                 />

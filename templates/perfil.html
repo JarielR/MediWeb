@@ -103,17 +103,17 @@
               type="button"
               class="text-white hover:bg-[#14378B] hover:text-white px-3 py-2 rounded-md text-md font-bold"
             >
-              <span class="sr-only">Agregar Consulta</span>
+              <a href="{{url_for('consulta')}}"><span class="sr-only">Agregar Consulta</span></a>
               <!-- Heroicon name: outline/bell -->
-              <p>Agregar Consulta</p>
+              <a href="{{url_for('consulta')}}"><p>Agregar Consulta</p></a>
             </button>
              <button
               type="button"
               class="text-white hover:bg-[#14378B] hover:text-white px-3 py-2 rounded-md text-md font-bold"
             >
-              <span class="sr-only">Cerrar Sesión</span>
+              <a href="{{url_for('logout')}}"><span class="sr-only">Cerrar Sesión</span></a>
               <!-- Heroicon name: outline/bell -->
-              <p>Cerrar Sesión</p>
+              <a href="{{url_for('logout')}}"><p>Cerrar Sesión</p></a>
             </button>
 
             <!-- Profile dropdown -->
@@ -192,28 +192,28 @@
                   Nombre del Paciente
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900">
-                  Sebastian Solis Lopez
+                  {{current_user.user_name}}
                 </dd>
               </div>
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-gray-500" style="color:#003F9F">
                   Patologias
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">Random</dd>
+                <dd class="mt-1 text-sm text-gray-900">{{current_user.user_pat}}</dd>
               </div>
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-gray-500" style="color:#003F9F">Cédula de Identidad</dt>
-                <dd class="mt-1 text-sm text-gray-900">5.222.777</dd>
+                <dd class="mt-1 text-sm text-gray-900">{{current_user.user_ci}}</dd>
               </div>
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-gray-500" style="color:#003F9F">
                   Peso
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">95 kg</dd>
+                <dd class="mt-1 text-sm text-gray-900">75 kg</dd>
               </div>
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-gray-500" style="color:#003F9F">Sexo</dt>
-                <dd class="mt-1 text-sm text-gray-900">Masculino dudoso</dd>
+                <dd class="mt-1 text-sm text-gray-900">{{current_user.user_sex}}</dd>
               </div>
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-gray-500" style="color:#003F9F">Estatura</dt>
@@ -221,7 +221,7 @@
               </div>
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-gray-500" style="color:#003F9F">Tipo de sangre</dt>
-                <dd class="mt-1 text-sm text-gray-900">0+</dd>
+                <dd class="mt-1 text-sm text-gray-900">{{current_user.user_blood}}</dd>
               </div>
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-gray-500" style="color:#003F9F">Número de telefono</dt>
@@ -235,6 +235,7 @@
                     role="list"
                     class="border border-gray-200 rounded-md divide-y divide-gray-200"
                   >
+                  {% for consulta in consultas %}
                     <li
                       class="pl-3 pr-4 py-3 flex items-center justify-between text-sm"
                     >
@@ -254,208 +255,19 @@
                           />
                         </svg>
                         <span class="ml-2 flex-1 w-0 truncate">
-                          Consulta 1
+                          {{consulta.fecha_consulta}}
                         </span>
                       </div>
                       <div class="ml-4 flex-shrink-0">
                         <a
-                          href="#"
+                          href="{{url_for('ver_consulta',consulta_id=consulta.consulta_id)}}"
                           class="font-medium text-[#14378B] hover:text-blue-500"
                         >
                           Ver
                         </a>
                       </div>
                     </li>
-
-                    <li
-                      class="pl-3 pr-4 py-3 flex items-center justify-between text-sm"
-                    >
-                      <div class="w-0 flex-1 flex items-center">
-                        <!-- Heroicon name: solid/paper-clip -->
-                        <svg
-                          class="flex-shrink-0 h-5 w-5 text-gray-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span class="ml-2 flex-1 w-0 truncate">
-                          Consulta 2
-                        </span>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <a
-                          href="#"
-                          class="font-medium text-[#14378B] hover:text-blue-500"
-                        >
-                          Ver
-                        </a>
-                      </div>
-                    </li>
-                    <li
-                      class="pl-3 pr-4 py-3 flex items-center justify-between text-sm"
-                    >
-                      <div class="w-0 flex-1 flex items-center">
-                        <!-- Heroicon name: solid/paper-clip -->
-                        <svg
-                          class="flex-shrink-0 h-5 w-5 text-gray-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span class="ml-2 flex-1 w-0 truncate">
-                          Consulta 3
-                        </span>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <a
-                          href="#"
-                          class="font-medium text-[#14378B] hover:text-blue-500"
-                        >
-                          Ver
-                        </a>
-                      </div>
-                    </li>
-
-                    <li
-                      class="pl-3 pr-4 py-3 flex items-center justify-between text-sm"
-                    >
-                      <div class="w-0 flex-1 flex items-center">
-                        <!-- Heroicon name: solid/paper-clip -->
-                        <svg
-                          class="flex-shrink-0 h-5 w-5 text-gray-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span class="ml-2 flex-1 w-0 truncate">
-                          Consulta 4
-                        </span>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <a
-                          href="#"
-                          class="font-medium text-[#14378B] hover:text-blue-500"
-                        >
-                          Ver
-                        </a>
-                      </div>
-                    </li>
-                    <li
-                      class="pl-3 pr-4 py-3 flex items-center justify-between text-sm"
-                    >
-                      <div class="w-0 flex-1 flex items-center">
-                        <!-- Heroicon name: solid/paper-clip -->
-                        <svg
-                          class="flex-shrink-0 h-5 w-5 text-gray-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span class="ml-2 flex-1 w-0 truncate">
-                          Consulta 5
-                        </span>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <a
-                          href="#"
-                          class="font-medium [#14378B] hover:text-blue-500"
-                        >
-                          Ver
-                        </a>
-                      </div>
-                    </li>
-                    <li
-                      class="pl-3 pr-4 py-3 flex items-center justify-between text-sm"
-                    >
-                      <div class="w-0 flex-1 flex items-center">
-                        <!-- Heroicon name: solid/paper-clip -->
-                        <svg
-                          class="flex-shrink-0 h-5 w-5 text-gray-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span class="ml-2 flex-1 w-0 truncate">
-                          Consulta 6
-                        </span>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <a
-                          href="#"
-                          class="font-medium [#14378B] hover:text-blue-500"
-                        >
-                          Ver
-                        </a>
-                      </div>
-                    </li>
-                    <li
-                      class="pl-3 pr-4 py-3 flex items-center justify-between text-sm"
-                    >
-                      <div class="w-0 flex-1 flex items-center">
-                        <!-- Heroicon name: solid/paper-clip -->
-                        <svg
-                          class="flex-shrink-0 h-5 w-5 text-gray-400"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span class="ml-2 flex-1 w-0 truncate">
-                          Consulta 7
-                        </span>
-                      </div>
-                      <div class="ml-4 flex-shrink-0">
-                        <a
-                          href="#"
-                          class="font-medium text-[#14378B] hover:text-blue-500"
-                        >
-                          Ver
-                        </a>
-                      </div>
-                    </li>
-                      </div>
-                    </li>
+                    {%endfor%}
                   </ul>
                 </dd>
               </div>

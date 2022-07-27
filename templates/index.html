@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+  </head>
+  <body
+    style="
+      background: hsla(177, 87%, 79%, 1);
+
+      background: linear-gradient(
+        90deg,
+        hsla(177, 87%, 79%, 1) 0%,
+        hsla(235, 89%, 70%, 1) 100%
+      );
+
+      background: -moz-linear-gradient(
+        90deg,
+        hsla(177, 87%, 79%, 1) 0%,
+        hsla(235, 89%, 70%, 1) 100%
+      );
+
+      background: -webkit-linear-gradient(
+        90deg,
+        hsla(177, 87%, 79%, 1) 0%,
+        hsla(235, 89%, 70%, 1) 100%
+      );
+
+      filter: progid: DXImageTransform.Microsoft.gradient( startColorstr=&quot;#9BF8F4&quot;, endColorstr=&quot;#6F7BF7&quot;, GradientType=1 );
+    "
+  >
+    <div class="flex-grow flex flex-col">
+      <main>
+        <div class="mx-auto max-w-7xl w-full flex px-4 sm:px-6 lg:px-8">
+          <div style="width: 650px; height: 650px">
+            <img
+              style="width: 650px; height: 650px"
+              class="absolute inset-0 h-full w-full object-cover"
+              src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/041/821/original/logo2.PNG?1658876014"
+              alt="Logo"
+            />
+          </div>
+
+          <div class="flex-shrink-0 pt-10 sm:pt-16">
+            <a href="/" class="inline-flex">
+              <span class="sr-only">Registro Medico Central</span>
+            </a>
+          </div>
+          <div class="flex-shrink-0 my-auto py-16 sm:py-32">
+            <p
+              class="text-sm font-semibold text-indigo-600 uppercase tracking-wide"
+            >
+              Bienvenidos
+            </p>
+            <h1
+              class="mt-2 text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl"
+            >
+              Registro Medico Central
+            </h1>
+            <p class="mt-2 text-base text-black text-[20px]">
+              Centralizacion de historial clinico de pacientes para la
+              optimizacion de <br />
+              servicios de salud
+            </p>
+            <div class="mt-6 flex justify-end">
+              <a
+                href="{{url_for('login')}}"
+                class="text-base font-medium text-indigo-600 m-4 hover:text-indigo-500"
+                >Iniciar sesión</a
+              >
+              <a
+                href="{{url_for('registro')}}"
+                class="text-base font-medium text-indigo-600 m-4 hover:text-indigo-500"
+                >Registrarse</a
+              >
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
