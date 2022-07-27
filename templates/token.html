@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+  </head>
+  <body
+    style="
+      background: hsla(177, 87%, 79%, 1);
+      background: linear-gradient(
+        90deg,
+        hsla(177, 87%, 79%, 1) 0%,
+        hsla(235, 89%, 70%, 1) 100%
+      );
+      background: -moz-linear-gradient(
+        90deg,
+        hsla(177, 87%, 79%, 1) 0%,
+        hsla(235, 89%, 70%, 1) 100%
+      );
+      background: -webkit-linear-gradient(
+        90deg,
+        hsla(177, 87%, 79%, 1) 0%,
+        hsla(235, 89%, 70%, 1) 100%
+      );
+      filter: progid: DXImageTransform.Microsoft.gradient( startColorstr=&quot;#9BF8F4&quot;, endColorstr=&quot;#6F7BF7&quot;, GradientType=1 );
+    "
+  >
+    <script>
+      function myFunction() {
+        /* Get the text field */
+        var copyText = document.getElementById("botontoken");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        navigator.clipboard.writeText(copyText.value);
+      }
+    </script>
+    <div class="flex-grow flex flex-col h-[100vh]">
+      <main>
+        <div class="mx-auto max-w-7xl w-full flex sm:px-6 lg:px-8">
+          <div style="width: 650px; height: 650px" class="flex">
+            <img
+              style="width: 650px; height: 650px"
+              class="inset-0 h-full w-full object-cover"
+              src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/041/821/original/logo2.PNG?1658876014"
+              alt="Logo"
+            />
+
+            <div class="flex items-center">
+              <div class="flex-shrink-0 pt-10 sm:pt-16">
+                <a href="/" class="inline-flex">
+                  <span class="sr-only font-extrabold font-serif"
+                    >Registro Medico Central</span
+                  >
+                </a>
+              </div>
+
+              <div class="flex-shrink-0 my-auto py-16 w-[600px]">
+                <div>
+                  <input
+                    type="text"
+                    value="127.0.0.1:5000{{url_token}}"
+                    id="botontoken"
+                    class="w-[600px] mb-4 border-dashed border-4 border-sky"
+                  />
+                  <div class="">
+                    <button
+                      class="w-full px-10 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 hover:drop-shadow-md duration-300 ease-in"
+                      onclick="myFunction()"
+                    >
+                      Copiar Link
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- This example requires Tailwind CSS v2.0+ -->
+  </body>
+</html>

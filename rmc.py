@@ -181,7 +181,7 @@ def logout():
 @token_required
 def protected():
     consultas = Consultas.query.filter_by(consulta_user_id=current_user.id)
-    return render_template('user.html', consultas = consultas) 
+    return render_template('perfil.html', consultas = consultas) 
 
 @app.route('/token')
 @login_required

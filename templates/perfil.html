@@ -105,16 +105,16 @@
               <div class="flex space-x-4">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <a
-                  href="#"
+                  href="{{url_for('index')}}"
                   class="text-white flex self-center hover:bg-[#14378B] text-white px-3 py-2 rounded-md text-md font-bold"
                   aria-current="page"
                   >Inicio</a
                 >
 
                 <a
-                  href="#"
+                  href="{{url_for('token')}}"
                   class="text-white flex self-center hover:bg-[#14378B] text-white px-3 py-2 rounded-md text-md font-bold"
-                  >Historial</a
+                  >Generar token</a
                 >
               </div>
             </div>
@@ -204,7 +204,7 @@
 
     <!------------------------------------------------- aca empieza el main ----------------------------------------------->
     <div
-      class="w-screen h-screen flex justify-center items-center"
+      class="w-screen h-[100vh] flex justify-center"
     >
       <div class="flex justify-center bg-[#D8EFFF]">
         <div class="w-[700px] h-[00px]">
