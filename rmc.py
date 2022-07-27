@@ -5,6 +5,9 @@ from flask_wtf import FlaskForm
 from wtforms import Form, BooleanField, StringField, PasswordField, validators
 from wtforms.validators import InputRequired, Length
 from werkzeug.utils import secure_filename
+import jwt
+import datetime
+from functools import wraps
 
 
 
@@ -52,6 +55,24 @@ class LoginForm(FlaskForm):
     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
     # remember = BooleanField('remember me')
 
+
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = request.args.get('token') #https://127.0.0.1:5000/route?token=blablablablabla
+
+        if not token:
+            return '<h1>Faltan las credenciales!</h1>'
+            # return jsonify({'message' : 'TE FALTA EL TOKEN CHE SOCIO'}), 403
+        try:
+            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+            print(data)
+        except Exception as e:
+            print(e)
+            return '<h1>Credenciales invalidas!</h1>'
+            # return jsonify({'message': 'NDOVALEI NDE TOKEN KP'}), 403
+        return f(*args, **kwargs)
+    return decorated
 
 
 @app.route("/")
@@ -153,6 +174,25 @@ def ver_consulta(consulta_id):
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+#Ruta para el token 
+@app.route('/protected')
+@login_required
+@token_required
+def protected():
+    consultas = Consultas.query.filter_by(consulta_user_id=current_user.id)
+    return render_template('user.html', consultas = consultas) 
+
+@app.route('/token')
+@login_required
+def token():
+    if current_user:
+        token = jwt.encode({'user': current_user.id, 'exp':datetime.datetime.utcnow()+datetime.timedelta(minutes=2)}, app.config['SECRET_KEY'])
+        url_token= '/protected?token='+token
+        return render_template('token.html',url_token = url_token)
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
